@@ -1,0 +1,29 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<div id="news" class="g-fullwidth bluegray-300"><div class="g-pagewidth">
+  <article{{ attributes }}>
+      {# title #}
+      {{ title_prefix }}
+        <h1{{ title_attributes.addClass('txt-white txt-center') }}>{{ label }}</h1>
+      {{ title_suffix }}
+      {# /title  #}
+      {# Print out only the content.field_text + whatever else is gonna be added #}
+
+      {{ content.field_images }}
+
+      {{ content|without('links','comment','field_image','field_images') }}
+  </article>
+
+</div></div>
+
+
+

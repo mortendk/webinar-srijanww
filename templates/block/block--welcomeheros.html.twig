@@ -1,0 +1,14 @@
+{#
+alternatives instead of setAttribute
+attributes|without('id');
+attributes.removeAttribute('id')
+ #}
+<div{{ attributes.addClass('hero-main').setAttribute('id', 'top') }}>
+  {{ content.field_hero_image}}
+  <div class="hero-main__logo">
+    <div class="logo">SrijanWW</div>
+  </div>
+   {{ content.field_hero_text}}
+   <a href="#home" class="hero-main__link">Go!</a>
+</div>
+

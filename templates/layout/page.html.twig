@@ -1,0 +1,62 @@
+{# enable kint -> drush en devel drush en kint #}
+{# {{ kint(page) }} #}
+
+{{ page.hero }}
+
+<header role="banner" class="g-fullwidth nav-fixed">
+  <div class="g-pagewidth">
+
+  <div class="l-logo">
+    <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" class="logo">{{ site_name }}</a>
+  </div>
+
+  {#  main menu #}
+  <nav class="l-menu menu-h menu-h--center menu-main">
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="http://drupal.org/drupal8">Drupal8 </a></li>
+    </ul>
+  </nav>
+
+  {# social menu - we add this in if we get the #}
+  <nav class="l-social menu-social menu-h menu-h--center">
+    <ul>
+      <li><a href="http://twitter.com/mortendk" class="icon icon--twitter">twitter</a></li>
+      <li><a href="#" class="icon icon--facebook">facebook</a></li>
+      <li><a href="#" class="icon icon--linkedin">linkedin</a></li>
+      <li><a href="#" class="icon icon--youtube">youtube</a></li>
+    </ul>
+  </nav>
+
+
+  </div>
+</header>
+
+<main role="main" id="home">
+    {# lets kill the title of the main page with a twig block #}
+    {{ title_prefix }}
+    {% if title %}
+      {# <h1>{{ title }}</h1> #}
+    {% endif %}
+    {{ title_suffix }}
+
+    {% if page.messages %} <div class="l-messages">{{ page.messages }}</div> {% endif %}
+
+    {{ tabs }}
+
+    {% if action_links %}
+      <nav>{{ action_links }}</nav>
+    {% endif %}
+
+    {{ page.content }}
+  </div>{# /.l-content #}
+
+</main>
+
+<footer role="contentinfo" class="bluegray-900">
+  {% if site_slogan %}<div class="l-site">{{ site_slogan }}</div>{% endif %}
+  {% if page.footer %} <div class="l-footer">{{ page.footer }}</div>{% endif %}
+</footer>
+

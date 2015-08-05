@@ -1,0 +1,107 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<div id="news" class="g-fullwidth bluegray-700"><div class="g-pagewidth">
+
+  <article{{ attributes.addClass('layout') }}>
+
+    <div class="main width-75 bluegray-600">
+      {# title #}
+      {{ title_prefix }}
+      {% if not page %}
+        <h1{{ title_attributes.addClass('full-width bluegray-400 text-bluegray-200 txt-center') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h1>
+      {% else %}
+        <h1{{ title_attributes.addClass('full-width bluegray-400 text-bluegray-200 txt-center') }}>{{ label }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+      {# /title  #}
+
+      {{ content.field_teaser }}
+
+      {#  uses field--node--field-image--article.html.twig #}
+      {{ content.field_image }}
+
+      {# Print out only the content.field_text + whatever else is gonna be added #}
+      {{ content|without('links','comment','field_image','field_images','field_sidebar','field_tags','field_teaser', 'field_icons' ) }}
+
+      {# <div{{ content_attributes.addClass('node__content') }}></div> #}
+
+      {# uses field--comment.html.twig #}
+      {{ content.comment }}
+
+    </div>
+    <div class="sidebar width-25 bluegray-800">
+
+{# <ol>
+{% for key, value in _context  %}
+  <li>{{ key }} </li>
+
+  {% if loop.index == 16 %}}
+    <pre>{{ dump( value ) }}</pre>
+  {% endif %}
+
+{% endfor %}
+</ol> #}
+
+      {# Author #}
+      {% if display_submitted %}
+        <footer class="node__meta">
+        {# todo add in multople #}
+        {{ author_picture }}
+
+        <div{{ author_attributes.addClass('txt-white txt-center') }}>
+          {{ node.createdtime|date("m.d Y") }}
+          {{ author_name }}
+          {{ metadata }}
+        </div>
+        </footer>
+      {% endif %}
+
+
+      {{ content.getCreatedTime() }}
+{#       <nav class="tags menu-h menu-h--center bluegray-500 full-width">
+        <ul>
+          <li><a href="#" class="icon icon--large icon--tie tooltip"><span class="tooltip__msg">Classy theme!</span></a></li>
+          <li><a href="#" class="icon icon--large icon--smartwatch tooltip"><span class="tooltip__msg">apple watch</span></a></li>
+          <li><a href="#" class="icon icon--large icon--umbrella tooltip"><span class="tooltip__msg">Rain :(</span></a></li>
+          <li><a href="#" class="icon icon--large icon--converse tooltip"><span class="tooltip__msg">All Stars</span></a></li>
+        </ul>
+      </nav>
+ #}
+
+      {{ content.field_icons }}
+
+{#       <nav class="tags menu-h menu-h--center bluegray-500 full-width">
+        <ul>
+          <li><a href="#" class="icon icon--large icon--tie tooltip"><span class="tooltip__msg">Classy theme!</span></a></li>
+          <li><a href="#" class="icon icon--large icon--smartwatch tooltip"><span class="tooltip__msg">apple watch</span></a></li>
+          <li><a href="#" class="icon icon--large icon--umbrella tooltip"><span class="tooltip__msg">Rain :(</span></a></li>
+          <li><a href="#" class="icon icon--large icon--converse tooltip"><span class="tooltip__msg">All Stars</span></a></li>
+        </ul>
+      </nav>
+ #}
+      <div class="full-width bluegray-900 text-bluegray-600">
+        {{ content.field_sidebar }}
+      </div>
+
+      {{ content.field_images }}
+
+
+    </div>
+
+  </article>
+
+</div></div>
+
+
+

@@ -1,0 +1,52 @@
+<?php
+/* Lets kill some divs in field */
+function webinar_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+
+  if ( count($element['#items']) > 1)  {
+    $variables['multiple_fields'] = TRUE;
+  }
+  if ( count($element['#items']) > 1 and $element['#label_display'] != 'hidden' ) {
+    $variables['multiple_items_wrapper'] = TRUE;
+  }
+  // Check if theres multiple fields, the label is hidden and content_attributes is empty.
+  if ( count($element['#items']) > 1 and $element['#label_display'] == 'hidden' and empty($variables['content_attributes']) ) {
+    $variables['multiple_hiddenlabel_no_content_attributes'] = TRUE;
+  }
+
+  // Check if theres multiple fields or a visible label or content_attributes is not empty.
+  if ( count($element['#items']) > 1 or $element['#label_display'] != 'hidden' or !empty($variables['content_attributes']) ) {
+    $variables['multiple_visiblelabel_content_attributes'] = TRUE;
+  }
+
+}
+
+
+function webinar_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  $element = $variables['element'];
+  /* Remove the div wrapper on the frontpage view*/
+  if ($element['#name'] =="frontpage") {
+    $suggestions[] = 'container__' . 'frontpage';
+  }
+}
+
+
+
+/* Adding a library to the maintenance page. */
+function webinar_preprocess_maintenance_page(&$variables) {
+  $variables['#attached']['library'][] = 'webinar/maintenance_page';
+}
+
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ * https://www.drupal.org/node/2100775
+ * use kint($variables); to show all vars available then do something like this:
+ * $variables['elements']['#view_mode']
+ * to print out a string
+ */
+function webinar_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+//  $suggestions[] = 'node__' . 'my_first_suggestion';
+//  $suggestions[] = 'node__' . 'my_second_suggestion';
+}

@@ -1,0 +1,26 @@
+name: Webinar
+type: theme
+description: 'A demo theme for a webinar'
+base theme: classy
+package: drupalthemes
+core: 8.x
+screenshot: screenshot.gif
+
+# -- Libraries -----------------------------------------------------------------
+libraries:
+  - hafnia/global
+  # - hafnia/admin_toggle
+# -- CSS -----------------------------------------------------------------------
+stylesheets-remove:
+  - @classy/css/layout.css
+  - core/modules/system/css/system.theme.css
+  - core/assets/vendor/normalize-css/normalize.css
+  - core/modules/views/css/views.module.css
+
+
+# -- Regions -------------------------------------------------------------------
+regions:
+  header: Header
+  message: Message
+  content: Content
+  footer: Footer

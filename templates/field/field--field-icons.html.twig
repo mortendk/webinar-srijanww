@@ -1,0 +1,22 @@
+{#
+ <nav class="tags menu-h menu-h--center bluegray-500 full-width">
+    <ul>
+      <li><a href="#" class="icon icon--large icon--tie tooltip"><span class="tooltip__msg">Classy theme!</span></a></li>
+      <li><a href="#" class="icon icon--large icon--smartwatch tooltip"><span class="tooltip__msg">apple watch</span></a></li>
+      <li><a href="#" class="icon icon--large icon--umbrella tooltip"><span class="tooltip__msg">Rain :(</span></a></li>
+      <li><a href="#" class="icon icon--large icon--converse tooltip"><span class="tooltip__msg">All Stars</span></a></li>
+    </ul>
+  </nav>
+ #}
+{# {{ kint(items) }} #}
+<nav{{ attributes.addClass('tags menu-h menu-h--center bluegray-500 full-width') }}>
+  <ul{{ content_attributes }}>
+  {% for item in items %}
+    <li>
+    <a href="{{ item.content['#url'] }}" class="icon icon--large icon--{{ item.content['#title'] }} tooltip">
+      <span class="tooltip__msg">{{ item.content['#title'] }}</span>
+    </a>
+    </li>
+  {% endfor %}
+  </ul>
+</nav>

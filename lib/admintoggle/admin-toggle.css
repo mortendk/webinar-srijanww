@@ -1,0 +1,47 @@
+
+/**
+ * Toggle admin elements from the theme
+ * markup generated in js/admin-toggle.js
+*/
+
+.admin-toggle {
+  background: orange;
+  border: 1px solid red;
+  color: red;
+  cursor: pointer;
+  display: block;
+  height: 35px;
+  width: 35px;
+  position: fixed;
+  top: -30px;
+  left: 75%;
+  z-index: 999999;
+  border-radius: 0 0 3px 3px;
+  transition: top 0.5s ease;
+}
+  .admin-toggle:hover {
+    background: orangered;
+    top: 0px;
+  }
+.admin-toggle i {
+  display: block;
+  background: url(../admintoggle/wrench.png) no-repeat left center;
+  background-size: contain;
+  width:  20px;
+  height: 20px;
+  text-indent: -999999px;
+  margin:8px auto 0 auto;
+
+}
+/* Remove admin toolbar */
+body.admin-hide .tabs,
+body.admin-hide .toolbar,
+body.admin-hide .contextual-links,
+body.admin-hide button.trigger.focusable {
+  display: none;
+}
+/* Fix js added padding*/
+body.admin-hide[style] {
+  padding-top: 0 !important;
+  margin-left: 0 !important;
+}
