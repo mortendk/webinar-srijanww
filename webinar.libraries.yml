@@ -13,8 +13,7 @@ global:
   dependencies:
     - core/jquery
 
-# toggle admin lib
-#todo only load this if admin toolbar is there
+# toggle admintoolbase
 admin_toggle:
   version: 1.x
   css:
@@ -24,5 +23,3 @@ admin_toggle:
     lib/admintoggle/admin-toggle.js: {}
   dependencies:
     - core/jquery
-
-

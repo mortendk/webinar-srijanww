@@ -1,0 +1,46 @@
+{% spaceless %}
+{%
+  set classes = [
+    'field--name-' ~ field_name|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if multiple_hiddenlabel_no_content_attributes %}
+<div{{ attributes.addClass(classes).addClass('field__items') }}>
+{% elseif multiple_visiblelabel_content_attributes %}
+<div{{ attributes.addClass(classes) }}>
+{% endif %}
+
+  {% if not label_hidden %}
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}:</div>
+  {% endif %}
+
+  {% if multiple_items_wrapper %}
+    <div{{ content_attributes.addClass('field__items') }}>
+  {% endif %}
+
+  {# Item #}
+  {% for item in items %}
+    {% if (multiple_fields or not label_hidden or item.attributes.storage is not empty ) %}
+      <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+    {% else %}
+      <div{{ attributes.addClass(classes).addClass('field__item') }}>{{ item.content }}</div>
+    {% endif %}
+  {% endfor %}
+  {# /Item #}
+
+  {% if multiple_items_wrapper %}
+    </div>
+  {% endif %}
+
+{% if (multiple_hiddenlabel_no_content_attributes or multiple_visiblelabel_content_attributes) %}
+</div>
+{% endif %}
+{% endspaceless %}

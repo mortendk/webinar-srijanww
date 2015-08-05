@@ -6,7 +6,6 @@
       <h2{{ heading.attributes }}>{{ heading.text }}</h2>
     {%- endif -%}
   {%- endif -%}
-  <nav class="width-50">
   <ul{{ attributes.removeClass('links','inline') }}>
     {%- for key, item in links -%}
       {# .addClass(key|clean_class) #}
@@ -21,5 +20,4 @@
       </li>
     {%- endfor -%}
   </ul>
-</nav>
 {%- endif %}

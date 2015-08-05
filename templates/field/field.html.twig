@@ -1,46 +1,30 @@
-{% spaceless %}
+{#
+The orignal field.html.twig - ooooh the horror
+#}
+{% set field_name_class = field_name|clean_class %}
 {%
   set classes = [
-    'field--name-' ~ field_name|clean_class,
-    'field--label-' ~ label_display,
+    'field',
+    'field-' ~ entity_type|clean_class ~ '--' ~ field_name_class,
+    'field-name-' ~ field_name_class,
+    'field-type-' ~ field_type|clean_class,
+    'field-label-' ~ label_display,
+    label_display == 'inline' ? 'clearfix',
   ]
 %}
 {%
   set title_classes = [
-    'field__label',
+    'field-label',
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
-
-{% if multiple_hiddenlabel_no_content_attributes %}
-<div{{ attributes.addClass(classes).addClass('field__items') }}>
-{% elseif multiple_visiblelabel_content_attributes %}
 <div{{ attributes.addClass(classes) }}>
-{% endif %}
-
   {% if not label_hidden %}
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}:</div>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
   {% endif %}
-
-  {% if multiple_items_wrapper %}
-    <div{{ content_attributes.addClass('field__items') }}>
-  {% endif %}
-
-  {# Item #}
-  {% for item in items %}
-    {% if (multiple_fields or not label_hidden or item.attributes.storage is not empty ) %}
-      <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
-    {% else %}
-      <div{{ attributes.addClass(classes).addClass('field__item') }}>{{ item.content }}</div>
-    {% endif %}
-  {% endfor %}
-  {# /Item #}
-
-  {% if multiple_items_wrapper %}
-    </div>
-  {% endif %}
-
-{% if (multiple_hiddenlabel_no_content_attributes or multiple_visiblelabel_content_attributes) %}
+  <div{{ content_attributes.addClass('field-items') }}>
+    {% for item in items %}
+      <div{{ item.attributes.addClass('field-item') }}>{{ item.content }}</div>
+    {% endfor %}
+  </div>
 </div>
-{% endif %}
-{% endspaceless %}

@@ -1,7 +1,7 @@
 name: Webinar
 type: theme
 description: 'A demo theme Srijan Wednesday Webinars.'
-base theme: classy
+# base theme: classy
 package: drupalthemes
 core: 8.x
 screenshot: screenshot-webinar.png

@@ -1,8 +1,8 @@
 <?php
-/* Lets kill some divs in field */
+/* kill divitis for realz yo! */
 function webinar_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
-
+  //taste on the number of items
   if ( count($element['#items']) > 1)  {
     $variables['multiple_fields'] = TRUE;
   }
@@ -18,7 +18,6 @@ function webinar_preprocess_field(&$variables, $hook) {
   if ( count($element['#items']) > 1 or $element['#label_display'] != 'hidden' or !empty($variables['content_attributes']) ) {
     $variables['multiple_visiblelabel_content_attributes'] = TRUE;
   }
-
 }
 
 
@@ -31,11 +30,6 @@ function webinar_theme_suggestions_container_alter(array &$suggestions, array $v
 }
 
 
-
-/* Adding a library to the maintenance page. */
-function webinar_preprocess_maintenance_page(&$variables) {
-  $variables['#attached']['library'][] = 'webinar/maintenance_page';
-}
 
 
 

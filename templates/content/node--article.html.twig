@@ -26,32 +26,20 @@
       {{ title_suffix }}
       {# /title  #}
 
+      {# <div{{ content_attributes.addClass('node__content') }}></div> #}
+      {# {{ kint(content) }} #}
       {{ content.field_teaser }}
 
-      {#  uses field--node--field-image--article.html.twig #}
       {{ content.field_image }}
 
       {# Print out only the content.field_text + whatever else is gonna be added #}
       {{ content|without('links','comment','field_image','field_images','field_sidebar','field_tags','field_teaser', 'field_icons' ) }}
 
-      {# <div{{ content_attributes.addClass('node__content') }}></div> #}
-
-      {# uses field--comment.html.twig #}
-      {{ content.comment }}
+      {# hide the comments for now #}
+      {# {{ content.comment }} #}
 
     </div>
     <div class="sidebar width-25 bluegray-800">
-
-{# <ol>
-{% for key, value in _context  %}
-  <li>{{ key }} </li>
-
-  {% if loop.index == 16 %}}
-    <pre>{{ dump( value ) }}</pre>
-  {% endif %}
-
-{% endfor %}
-</ol> #}
 
       {# Author #}
       {% if display_submitted %}
@@ -67,29 +55,10 @@
         </footer>
       {% endif %}
 
-
       {{ content.getCreatedTime() }}
-{#       <nav class="tags menu-h menu-h--center bluegray-500 full-width">
-        <ul>
-          <li><a href="#" class="icon icon--large icon--tie tooltip"><span class="tooltip__msg">Classy theme!</span></a></li>
-          <li><a href="#" class="icon icon--large icon--smartwatch tooltip"><span class="tooltip__msg">apple watch</span></a></li>
-          <li><a href="#" class="icon icon--large icon--umbrella tooltip"><span class="tooltip__msg">Rain :(</span></a></li>
-          <li><a href="#" class="icon icon--large icon--converse tooltip"><span class="tooltip__msg">All Stars</span></a></li>
-        </ul>
-      </nav>
- #}
 
       {{ content.field_icons }}
 
-{#       <nav class="tags menu-h menu-h--center bluegray-500 full-width">
-        <ul>
-          <li><a href="#" class="icon icon--large icon--tie tooltip"><span class="tooltip__msg">Classy theme!</span></a></li>
-          <li><a href="#" class="icon icon--large icon--smartwatch tooltip"><span class="tooltip__msg">apple watch</span></a></li>
-          <li><a href="#" class="icon icon--large icon--umbrella tooltip"><span class="tooltip__msg">Rain :(</span></a></li>
-          <li><a href="#" class="icon icon--large icon--converse tooltip"><span class="tooltip__msg">All Stars</span></a></li>
-        </ul>
-      </nav>
- #}
       <div class="full-width bluegray-900 text-bluegray-600">
         {{ content.field_sidebar }}
       </div>
